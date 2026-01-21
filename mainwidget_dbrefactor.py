@@ -150,7 +150,7 @@ class MainWidget(BoxLayout):
         self.ids['FrequenciaRotacao'].text = (str(round(self._meas['values']['FrequenciaRotacao'], 2)) + ' RPM')
         self.ids['torque'].text = (str(round(self._meas['values']['torque'], 2)) + ' N.m')
         self.ids['CargaEsteira'].text = (str(round(self._meas['values']['CargaEsteira'], 2)) + ' Kgf/cm²')
-        self.ids['TempCarc'].text = (str(round(self._meas['values']['TempCarc'], 1)) + ' °C')
+        self.ids['TempCarc'].text = (str(round(self._meas['values']['TempCarc'], 1)/10) + ' °C')
         try:
             valor = self._meas['values'][self._selected_grandeza]
         except KeyError:
