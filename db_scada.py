@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
 from sqlalchemy import create_engine
-from sqlalchemy import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 Base = declarative_base() # Cria a classe base do SQLAlchemy para todos os modelos ORM
 
