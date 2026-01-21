@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, Float, DateTime
 
 def build_scada_model(Base, tags: dict, tablename: str = "datatable"):
     """
-    Método para criação de um modelo ORM com:
+    Método para cria dinamicamente uma classe ORM a partir do dicionário de tags Modbus:
         - id (PK)
         - timestamp (DateTime)
         - 1 coluna Float por tag

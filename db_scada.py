@@ -3,11 +3,12 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy import declarative_base, sessionmaker
 
-Base = declarative_base()
+Base = declarative_base() # Cria a classe base do SQLAlchemy para todos os modelos ORM
+
 
 def _normalize_db_file(db_path: str | Path, filename: str = "scada.db") -> Path:
     """
-    Método para criação do diretório onde será criado o arquivo do banco de dados
+    Método para transformar o caminho passado (db_path) em um caminho de arquivo .db válido.
     """
     p = Path(db_path)
 
@@ -30,10 +31,15 @@ def create_sqlite_engine (db_path: str | Path):
     """
     db_file = _normalize_db_file(db_path)
     sqlite_url = f"sqlite:///{db_file.as_posix()}?check_same_thread=False"
-    return create_engine(sqlite_url, echo=False, future=True)
+    return create_engine(sqlite_url, 
+                         echo=False, 
+                         future=True) 
 
 def create_session_factory(engine):
     """
-    Método para retornar um sessionmaker
+    Método para criar uma nova Session() a cada operação dentro de um with lock (thread-safe).
     """
-    return sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
+    return sessionmaker(bind=engine, # todas as Session usam esse banco
+                        autoflush=False, # não joga mudanças automaticamente para o banco sem necessidade
+                        autocommit=False, # controla commit() explicitamente
+                        future=True) # usa a API nova
