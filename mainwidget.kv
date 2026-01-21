@@ -52,11 +52,18 @@
             size_hint: (None, None)
             size:  (medidor_vel.size[0]*0.15, medidor_vel.size[1])
             pos_hint: {'x':0.83, 'y':0.36}
-            canvas:
+            canvas.before:
+                # fundo cinza (régua completa)
                 Color:
-                    rgb: 0.85,0.85,0.85
+                    rgba: 0.85,0.85,0.85,1
                 Rectangle:
                     size: self.width * 4.8, self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+                # preenchimento vermelho proporcional ao valor
+                Color:
+                    rgba: 1,0,0,1
+                Rectangle:
+                    size: self.width * 4.8 * root.get_regua_ratio('VelocidadeEsteira'), self.height * 0.2
                     pos: (self.pos[0]+12, self.pos[1]+21)
 
         Label:
@@ -64,11 +71,16 @@
             size_hint: (None, None)
             size:  (medidor_tq.size[0]*0.15, medidor_tq.size[1])
             pos_hint: {'x':0.26, 'y':0.17}
-            canvas:
+            canvas.before:
                 Color:
-                    rgb: 0.85,0.85,0.85
+                    rgba: 0.85,0.85,0.85,1
                 Rectangle:
                     size: self.width * 4.8, self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+                Color:
+                    rgba: 1,0,0,1
+                Rectangle:
+                    size: self.width * 4.8 * root.get_regua_ratio('torque'), self.height * 0.2
                     pos: (self.pos[0]+12, self.pos[1]+21)
 
         Label:
@@ -76,11 +88,16 @@
             size_hint: (None, None)
             size:  (medidor_carga.size[0]*0.15, medidor_carga.size[1])
             pos_hint: {'x':0.6, 'y':0.67}
-            canvas:
+            canvas.before:
                 Color:
-                    rgb: 0.85,0.85,0.85
+                    rgba: 0.85,0.85,0.85,1
                 Rectangle:
                     size: self.width * 4.8, self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+                Color:
+                    rgba: 1,0,0,1
+                Rectangle:
+                    size: self.width * 4.8 * root.get_regua_ratio('CargaEsteira'), self.height * 0.2
                     pos: (self.pos[0]+12, self.pos[1]+21)
 
         Label:
@@ -88,12 +105,35 @@
             size_hint: (None, None)
             size:  (medidor_rot.size[0]*0.15, medidor_rot.size[1])
             pos_hint: {'x':0.26, 'y':0.35}
-            canvas:
+            canvas.before:
                 Color:
-                    rgb: 0.85,0.85,0.85
+                    rgba: 0.85,0.85,0.85,1
                 Rectangle:
-                    size: self.width * 4.8, self.height * 0.2  # Aumenta largura e reduz altura
-                    pos: (self.pos[0]+12, self.pos[1]+21)  # Ajusta posição para alinhar corretamente
+                    size: self.width * 4.8, self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+                Color:
+                    rgba: 1,0,0,1
+                Rectangle:
+                    size: self.width * 4.8 * root.get_regua_ratio('FrequenciaRotacao'), self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+
+        Label:
+            id: lb_med_tempcarc
+            size_hint: (None, None)
+            size:  (medidor_tempcarc.size[0]*0.15, medidor_tempcarc.size[1])
+            # ajusta esses valores pra encaixar no lugar do X vermelho
+            pos_hint: {'x':0.08, 'y':0.63}
+            canvas.before:
+                Color:
+                    rgba: 0.85,0.85,0.85,1
+                Rectangle:
+                    size: self.width * 4.8, self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
+                Color:
+                    rgba: 1,0,0,1
+                Rectangle:
+                    size: self.width * 4.8 * root.get_regua_ratio('TempCarc'), self.height * 0.2
+                    pos: (self.pos[0]+12, self.pos[1]+21)
 
         Image:
             id: medidor_vel
@@ -118,6 +158,13 @@
             source: 'imgs/medidor.png'
             size_hint: (0.10,0.10)
             pos_hint: {'x':0.26, 'y':0.35}
+
+        Image:
+            id: medidor_tempcarc
+            source: 'imgs/medidor.png'
+            size_hint: 0.10,0.10
+            # mesma posição geral da régua/box de temperatura
+            pos_hint: {'x':0.08, 'y':0.63}
 
         Button:
             size_hint:(None, None)
@@ -171,6 +218,25 @@
                 bold: True
                 halign: 'center'
                 color: 0,0,0,1
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.08, 'y':0.57}   # ajusta pra bater com a régua/ícone
+            Label:
+                text: 'Temp. Carcaça'
+                font_size: 15
+                bold: True
+                halign: 'center'
+                color: 0,0,0,1
+            Label:
+                id: TempCarc
+                text: '-.- °C'
+                font_size: 15
+                bold: True
+                halign: 'center'
+                color: 0,0,0,1
+
 
         BoxLayout:
             orientation: 'vertical'
