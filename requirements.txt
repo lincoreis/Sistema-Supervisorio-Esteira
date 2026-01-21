@@ -1,2 +1,7 @@
 tabulate
 pymodbustcp
+pymodbus==2.5.3
+kivy
+kivy-garden
+kivy-garden.graph
+sqlalchemy
