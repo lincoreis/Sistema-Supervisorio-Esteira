@@ -274,7 +274,7 @@ class MedicoesPopup(Popup):
         self.ids.FrequenciaRede.text = str(values.get("FrequenciaRede", 0.0)/100)
         self.ids.PotAtivaTotal.text = str(values.get("PotAtivaTotal", 0.0))
         self.ids.PotAparenteTotal.text = str(values.get("PotAparenteTotal", 0.0))
-        self.ids.PotReativaTotal.text = str(values.get("PotReativaTotal", 0.0))
+        self.ids.PotReativaTotal.text = str(values.get("PotReativaTotal", 0.0)/100)
 
         self.ids.dppRS.text = str(values.get("dppRS", 0.0)/10)
         self.ids.dppST.text = str(values.get("dppST", 0.0)/10)
