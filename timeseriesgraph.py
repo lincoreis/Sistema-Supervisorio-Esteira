@@ -18,9 +18,9 @@ GRAPH_CONFIG = {
     "dppST": {"label": "Tensão S-T", "unit": "V", "ymin": 0, "ymax": 300},
     "dppTR": {"label": "Tensão T-R", "unit": "V", "ymin": 0, "ymax": 300},
 
-    "PotAtivaTotal": {"label": "Potência Ativa", "unit": "W", "ymin": 0, "ymax": 10000},
-    "PotReativaTotal": {"label": "Potência Reativa", "unit": "W", "ymin": 0, "ymax": 10000},
-    "PotAparenteTotal": {"label": "Potência Aparente", "unit": "W", "ymin": 0, "ymax": 10000},
+    "PotAtivaTotal": {"label": "Potência Ativa", "unit": "W", "ymin": 0, "ymax": 1000},
+    "PotReativaTotal": {"label": "Potência Reativa", "unit": "W", "ymin": 0, "ymax": 1000},
+    "PotAparenteTotal": {"label": "Potência Aparente", "unit": "W", "ymin": 0, "ymax": 1000},
 
     "THDCorrenteR": {"label": "THD Corrente R", "unit": "%", "ymin": 0, "ymax": 300},
     "THDCorrenteS": {"label": "THD Corrente S", "unit": "%", "ymin": 0, "ymax": 300},
