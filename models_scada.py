@@ -19,7 +19,6 @@ def build_scada_model(Base, tags: dict, tablename: str = "datatable"):
     }
 
     for tag_name in tags.keys():
-        # Float porque no seu projeto as leituras são float32 do Modbus
         attrs[tag_name] = Column(Float)
 
     return type("ScadaData", (Base,), attrs)
